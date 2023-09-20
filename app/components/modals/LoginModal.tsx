@@ -12,7 +12,7 @@ import toast from "react-hot-toast";
 import Button from "../Button";
 import useLoginModal from "@/app/hooks/useLoginModal";
 import { signIn } from "next-auth/react";
-import {useRouter} from 'next/navigation';
+import { useRouter } from "next/navigation";
 
 const LoginModal = () => {
   const router = useRouter();
@@ -35,22 +35,22 @@ const LoginModal = () => {
     setIsLoading(true);
 
     console.log(data);
-    signIn('credentials', {
+    signIn("credentials", {
       ...data,
-      redirect: false
+      redirect: false,
     }).then((callback) => {
       setIsLoading(false);
 
-      if(callback?.ok){
-        toast.success('Logged in')
+      if (callback?.ok) {
+        toast.success("Logged in");
         router.refresh();
         loginModal.onClose();
       }
 
-      if(callback?.error){
+      if (callback?.error) {
         toast.error(callback.error);
       }
-    })
+    });
   };
 
   const bodyContent = (
@@ -83,19 +83,17 @@ const LoginModal = () => {
         outline
         label="Continue with Google"
         icon={FcGoogle}
-        onClick={() => {}}
+        onClick={() => signIn("google")}
       />
       <Button
         outline
         label="Continue with Github"
         icon={AiFillGithub}
-        onClick={() => {}}
+        onClick={() => signIn("github")}
       />
       <div className="text-neutral-500 text-center mt-4 font-light">
         <div className="flex justify-center items-center gap-2">
-          <div>
-            Already have an account?
-          </div>
+          <div>Already have an account?</div>
           <div
             onClick={registerModal.onClose}
             className="
