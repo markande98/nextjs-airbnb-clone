@@ -5,11 +5,11 @@ import EmptyState from "./components/EmptyState";
 import ListingCard from "./components/listings/ListingCard";
 
 interface HomeProps {
-  serachParams: IListingsParams;
+  searchParams: IListingsParams;
 }
 
-const Home = async ({ serachParams }: HomeProps) => {
-  const listings = await getListings(serachParams);
+const Home = async ({ searchParams }: HomeProps) => {
+  const listings = await getListings(searchParams);
   const currentUser = await getCurrentUser();
 
   if (listings.length === 0) return <EmptyState showReset />;
