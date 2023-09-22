@@ -34,7 +34,6 @@ const LoginModal = () => {
   const onSubmit: SubmitHandler<FieldValues> = (data) => {
     setIsLoading(true);
 
-    console.log(data);
     signIn("credentials", {
       ...data,
       redirect: false,
